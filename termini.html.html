@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex"/>
+<title>Termini di Servizio — BTCQuant</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A1420;--panel:#101B2D;--panel2:#0D1826;--bordo:#1E2E42;--ink:#E7EDF3;--muto:#7C8A9C;--amber:#D8A34E;--teal:#4FB6A8;--coral:#C1543D}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;line-height:1.7}
+h1,h2{font-family:'Space Grotesk',sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:9;background:rgba(10,20,32,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--bordo)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{font-family:'Space Grotesk';font-weight:700;font-size:17px;color:var(--amber);text-decoration:none}
+.lingue button{background:none;border:1px solid var(--bordo);color:var(--muto);padding:5px 11px;border-radius:8px;cursor:pointer;font-size:13px;margin-left:6px;font-family:'IBM Plex Mono'}
+.lingue button.attiva{color:var(--bg);background:var(--amber);border-color:var(--amber);font-weight:600}
+header{padding:56px 0 30px}
+h1{font-size:32px;margin-bottom:8px}
+.agg{color:var(--muto);font-family:'IBM Plex Mono';font-size:13px}
+main{padding-bottom:70px}
+h2{font-size:19px;margin:34px 0 10px}
+p,li{color:#C3CEDB;font-size:15px}
+ul{margin:10px 0 10px 22px}li{margin-bottom:6px}
+.seg{background:rgba(216,163,78,.13);border:1px dashed var(--amber);color:var(--amber);padding:1px 7px;border-radius:5px;font-family:'IBM Plex Mono';font-size:13px;white-space:nowrap}
+.nota{border-left:3px solid var(--coral);background:var(--panel2);padding:18px 22px;border-radius:0 12px 12px 0;margin:26px 0;color:var(--muto);font-size:13.5px}
+.chiave{background:var(--panel2);border:1px solid var(--coral);border-radius:12px;padding:22px 26px;margin:26px 0}
+.chiave p{color:var(--ink)}
+footer{border-top:1px solid var(--bordo);padding:28px 0;color:var(--muto);font-size:13px}
+footer a{color:var(--teal);text-decoration:none;margin-right:16px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="index.html">BTCQuant</a>
+  <div class="lingue">
+    <button data-lingua="it" onclick="setLingua('it')">IT</button>
+    <button data-lingua="en" onclick="setLingua('en')">EN</button>
+  </div>
+</div></nav>
+
+<header><div class="wrap">
+  <h1 data-t="titolo"></h1>
+  <div class="agg" data-t="agg"></div>
+</div></header>
+
+<main><div class="wrap">
+  <div class="nota" data-t="avviso_bozza"></div>
+  <div id="corpo"></div>
+</div></main>
+
+<footer><div class="wrap">
+  © <span id="anno"></span> BTCQuant —
+  <a href="index.html" data-t="ft_home"></a>
+  <a href="privacy.html" data-t="ft_privacy"></a>
+</div></footer>
+
+<script>
+const S = (t) => `<span class="seg">${t}</span>`;
+
+const T = {
+it:{
+ titolo:"Termini di Servizio",
+ agg:"Ultimo aggiornamento: " + S("[DATA DI PUBBLICAZIONE]"),
+ ft_home:"Home", ft_privacy:"Privacy Policy",
+ avviso_bozza:"BOZZA DA COMPLETARE — I campi evidenziati vanno compilati con i dati definitivi. Il documento va sottoposto a revisione legale prima della pubblicazione: le clausole su limitazione di responsabilità, recesso e foro competente hanno effetti giuridici rilevanti.",
+ corpo:`
+ <h2>1. Chi siamo</h2>
+ <p>BTCQuant è un servizio fornito da ${S("[NOME E COGNOME / RAGIONE SOCIALE]")}, con sede in ${S("[INDIRIZZO COMPLETO]")}, ${S("[P.IVA / CODICE FISCALE]")}, contattabile all'indirizzo ${S("[EMAIL DI CONTATTO]")} (di seguito, "il Fornitore").</p>
+ <p>Utilizzando il sito btcquant.io e la console BTCQuant accetti integralmente questi Termini. Se non li accetti, non utilizzare il servizio.</p>
+
+ <h2>2. Che cos'è BTCQuant</h2>
+ <p>BTCQuant è uno <strong>strumento informativo e didattico</strong> di analisi quantitativa: raccoglie metriche pubbliche on-chain relative a Bitcoin, le elabora in un punteggio composito e restituisce una lettura sintetica della fase di ciclo di mercato.</p>
+
+ <div class="chiave">
+   <p><strong>Che cosa NON è BTCQuant.</strong> Il servizio non costituisce consulenza finanziaria, consulenza in materia di investimenti, raccomandazione personalizzata, gestione di portafogli, ricerca in materia di investimenti né sollecitazione al pubblico risparmio. Il Fornitore non è un intermediario finanziario autorizzato e non fornisce alcun servizio riservato ai sensi della normativa applicabile, incluso il Regolamento (UE) 2023/1114 (MiCAR).</p>
+   <p>Le informazioni fornite hanno finalità esclusivamente informative e didattiche. <strong>Ogni decisione di investimento è assunta dall'utente in piena autonomia e a proprio esclusivo rischio.</strong> Le performance passate, incluse quelle illustrate nel backtest storico, non sono in alcun modo garanzia o indicazione di risultati futuri. Investire in cripto-attività comporta rischi elevati, inclusa la perdita totale del capitale investito.</p>
+ </div>
+
+ <h2>3. Licenza d'uso</h2>
+ <p>Con l'acquisto ricevi una licenza personale, non esclusiva, non trasferibile e non sublicenziabile per l'accesso e l'uso della console per finalità personali e non commerciali, senza limiti di tempo ("a vita", intesa come durata di erogazione del servizio da parte del Fornitore).</p>
+ <p>Non è consentito: condividere le credenziali di accesso con terzi; rivendere, redistribuire o ripubblicare il servizio o i suoi contenuti; effettuare estrazioni sistematiche o automatizzate dei dati (scraping); decompilare o tentare di aggirare i sistemi di controllo dell'accesso; presentare il servizio come proprio.</p>
+ <p>Il Fornitore può sospendere l'accesso, senza rimborso, in caso di violazione sostanziale di queste condizioni, in particolare in caso di condivisione o rivendita degli accessi.</p>
+
+ <h2>4. Prezzo, pagamento e accesso</h2>
+ <p>Il prezzo è indicato sul sito al momento dell'acquisto, in euro e comprensivo delle imposte applicabili. Il pagamento è <strong>una tantum</strong>, senza rinnovi né abbonamenti.</p>
+ <p>I pagamenti sono gestiti da fornitori terzi (Stripe per le carte, ${S("[CRYPTO.COM PAY]")} per le cripto-attività); il Fornitore non tratta né conserva i dati delle carte di pagamento.</p>
+ <p><strong>Importante:</strong> l'accesso alla console è associato all'indirizzo email utilizzato per il pagamento. È responsabilità dell'utente utilizzare la stessa email in fase di accesso.</p>
+ <p>I prezzi promozionali di lancio e gli eventuali codici partner sono validi per il periodo indicato; al termine del periodo promozionale si applica il prezzo pieno indicato sul sito.</p>
+
+ <h2>5. Diritto di recesso</h2>
+ <p>Per i contratti conclusi a distanza con consumatori, il Codice del Consumo riconosce un diritto di recesso di 14 giorni. Trattandosi di contenuto digitale fornito immediatamente, al momento dell'acquisto l'utente presta espresso consenso all'esecuzione immediata e prende atto che <strong>ciò comporta la perdita del diritto di recesso</strong> una volta ottenuto l'accesso alla console (art. 59 lett. o, D.lgs. 206/2005).</p>
+ <p>${S("[POLITICA COMMERCIALE DI RIMBORSO: valutare se offrire comunque un rimborso volontario entro N giorni — scelta commerciale, non obbligo di legge]")}</p>
+
+ <h2>6. Disponibilità del servizio e dati</h2>
+ <p>Il servizio è fornito "così com'è". I dati provengono da fonti pubbliche di terze parti (tra cui CoinMetrics, CoinGecko, Blockchain.com, alternative.me): il Fornitore non garantisce l'accuratezza, la completezza o la continuità di tali dati, né l'assenza di interruzioni o errori nel servizio.</p>
+ <p>Il Fornitore si riserva di modificare, aggiornare o sospendere funzionalità, anche per cause dipendenti dalle fonti dati esterne, senza che ciò dia diritto a rimborsi.</p>
+
+ <h2>7. Limitazione di responsabilità</h2>
+ <p>Nei limiti massimi consentiti dalla legge, il Fornitore non risponde di perdite, mancati guadagni, danni diretti o indiretti derivanti da decisioni di investimento assunte dall'utente sulla base delle informazioni fornite dal servizio, né di danni derivanti da inesattezze dei dati di terze parti o da interruzioni del servizio.</p>
+ <p>Resta ferma la responsabilità del Fornitore per dolo e colpa grave, e per i diritti inderogabili riconosciuti ai consumatori dalla legge.</p>
+
+ <h2>8. Proprietà intellettuale</h2>
+ <p>Il software, la struttura della console, il modello di punteggio composito, i materiali del dossier di backtest, il nome BTCQuant e gli elementi grafici sono di proprietà del Fornitore e protetti dalla normativa sul diritto d'autore. I dati grezzi restano di titolarità delle rispettive fonti.</p>
+
+ <h2>9. Modifiche ai Termini</h2>
+ <p>Il Fornitore può aggiornare questi Termini. Le modifiche sostanziali saranno comunicate via email agli utenti registrati. L'uso continuato del servizio dopo la comunicazione costituisce accettazione.</p>
+
+ <h2>10. Legge applicabile e foro competente</h2>
+ <p>I presenti Termini sono regolati dalla legge italiana. Per i consumatori è competente in via esclusiva il foro del luogo di residenza o domicilio del consumatore, se situato in Italia. Per i non consumatori è competente in via esclusiva il foro di ${S("[CITTÀ DEL FORNITORE]")}.</p>`
+},
+en:{
+ titolo:"Terms of Service",
+ agg:"Last updated: " + S("[PUBLICATION DATE]"),
+ ft_home:"Home", ft_privacy:"Privacy Policy",
+ avviso_bozza:"DRAFT — The highlighted fields must be completed with final details. The document must be reviewed by a lawyer before publication: the clauses on liability, withdrawal and jurisdiction have significant legal effects.",
+ corpo:`
+ <h2>1. Who we are</h2>
+ <p>BTCQuant is a service provided by ${S("[FULL NAME / COMPANY NAME]")}, based at ${S("[FULL ADDRESS]")}, ${S("[VAT / TAX ID]")}, reachable at ${S("[CONTACT EMAIL]")} (the "Provider").</p>
+ <p>By using btcquant.io and the BTCQuant console you fully accept these Terms. If you do not accept them, do not use the service.</p>
+
+ <h2>2. What BTCQuant is</h2>
+ <p>BTCQuant is an <strong>informational and educational</strong> quantitative analysis tool: it collects public on-chain Bitcoin metrics, combines them into a composite score and returns a synthetic reading of the market cycle phase.</p>
+
+ <div class="chiave">
+   <p><strong>What BTCQuant is NOT.</strong> The service does not constitute financial advice, investment advice, a personalised recommendation, portfolio management, investment research, or a solicitation of public savings. The Provider is not an authorised financial intermediary and does not provide any regulated service, including under Regulation (EU) 2023/1114 (MiCAR).</p>
+   <p>All information is provided for informational and educational purposes only. <strong>Every investment decision is made by the user independently and entirely at their own risk.</strong> Past performance, including the historical backtest shown, is in no way a guarantee or indication of future results. Investing in crypto-assets involves high risk, including the total loss of invested capital.</p>
+ </div>
+
+ <h2>3. Licence</h2>
+ <p>Your purchase grants a personal, non-exclusive, non-transferable and non-sublicensable licence to access and use the console for personal, non-commercial purposes, with no time limit ("lifetime", meaning for as long as the Provider operates the service).</p>
+ <p>You may not: share your access credentials; resell, redistribute or republish the service or its contents; carry out systematic or automated data extraction (scraping); decompile or attempt to bypass access controls; present the service as your own.</p>
+ <p>The Provider may suspend access, without refund, in case of material breach of these terms, in particular sharing or reselling of access.</p>
+
+ <h2>4. Price, payment and access</h2>
+ <p>The price is shown on the site at the time of purchase, in euro and inclusive of applicable taxes. Payment is <strong>one-time</strong>, with no renewals or subscriptions.</p>
+ <p>Payments are handled by third-party providers (Stripe for cards, ${S("[CRYPTO.COM PAY]")} for crypto-assets); the Provider never processes or stores card details.</p>
+ <p><strong>Important:</strong> console access is linked to the email address used for payment. It is the user's responsibility to sign in with that same email.</p>
+ <p>Launch pricing and partner codes are valid for the stated period; afterwards the full price shown on the site applies.</p>
+
+ <h2>5. Right of withdrawal</h2>
+ <p>For distance contracts with consumers, EU law grants a 14-day right of withdrawal. As this is digital content supplied immediately, at purchase the user expressly consents to immediate performance and acknowledges that <strong>this results in the loss of the right of withdrawal</strong> once console access is granted.</p>
+ <p>${S("[REFUND POLICY: decide whether to offer a voluntary refund within N days — a commercial choice, not a legal obligation]")}</p>
+
+ <h2>6. Service availability and data</h2>
+ <p>The service is provided "as is". Data comes from public third-party sources (including CoinMetrics, CoinGecko, Blockchain.com, alternative.me): the Provider does not guarantee the accuracy, completeness or continuity of such data, nor uninterrupted or error-free operation.</p>
+ <p>The Provider may modify, update or suspend features, including due to external data sources, without this giving rise to refunds.</p>
+
+ <h2>7. Limitation of liability</h2>
+ <p>To the maximum extent permitted by law, the Provider is not liable for losses, lost profits, or direct or indirect damages arising from investment decisions made by the user based on the service, nor for damages arising from third-party data inaccuracies or service interruptions.</p>
+ <p>Liability for wilful misconduct and gross negligence, and mandatory consumer rights, remain unaffected.</p>
+
+ <h2>8. Intellectual property</h2>
+ <p>The software, the console structure, the composite scoring model, the backtest dossier materials, the BTCQuant name and all graphic elements are owned by the Provider and protected by copyright law. Raw data remains the property of its respective sources.</p>
+
+ <h2>9. Changes to these Terms</h2>
+ <p>The Provider may update these Terms. Material changes will be notified by email to registered users. Continued use after notification constitutes acceptance.</p>
+
+ <h2>10. Governing law and jurisdiction</h2>
+ <p>These Terms are governed by Italian law. For consumers, the courts of the consumer's place of residence or domicile have exclusive jurisdiction, where located in Italy. For non-consumers, the courts of ${S("[PROVIDER'S CITY]")} have exclusive jurisdiction.</p>`
+}};
+
+function setLingua(l){
+  localStorage.setItem("lingua", l);
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-t]").forEach(el=>{ const v=T[l][el.dataset.t]; if(v!==undefined) el.innerHTML=v; });
+  document.getElementById("corpo").innerHTML = T[l].corpo;
+  document.querySelectorAll(".lingue button").forEach(b=>b.classList.toggle("attiva", b.dataset.lingua===l));
+}
+document.getElementById("anno").textContent = new Date().getFullYear();
+setLingua(localStorage.getItem("lingua") || ((navigator.language||"it").toLowerCase().startsWith("it") ? "it" : "en"));
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex"/>
+<title>Privacy Policy — BTCQuant</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A1420;--panel:#101B2D;--panel2:#0D1826;--bordo:#1E2E42;--ink:#E7EDF3;--muto:#7C8A9C;--amber:#D8A34E;--teal:#4FB6A8;--coral:#C1543D}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;line-height:1.7}
+h1,h2{font-family:'Space Grotesk',sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:9;background:rgba(10,20,32,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--bordo)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{font-family:'Space Grotesk';font-weight:700;font-size:17px;color:var(--amber);text-decoration:none}
+.lingue button{background:none;border:1px solid var(--bordo);color:var(--muto);padding:5px 11px;border-radius:8px;cursor:pointer;font-size:13px;margin-left:6px;font-family:'IBM Plex Mono'}
+.lingue button.attiva{color:var(--bg);background:var(--amber);border-color:var(--amber);font-weight:600}
+header{padding:56px 0 30px}
+h1{font-size:32px;margin-bottom:8px}
+.agg{color:var(--muto);font-family:'IBM Plex Mono';font-size:13px}
+main{padding-bottom:70px}
+h2{font-size:19px;margin:34px 0 10px;color:var(--ink)}
+p,li{color:#C3CEDB;font-size:15px}
+ul{margin:10px 0 10px 22px}li{margin-bottom:6px}
+.seg{background:rgba(216,163,78,.13);border:1px dashed var(--amber);color:var(--amber);
+  padding:1px 7px;border-radius:5px;font-family:'IBM Plex Mono';font-size:13px;white-space:nowrap}
+.nota{border-left:3px solid var(--coral);background:var(--panel2);padding:18px 22px;border-radius:0 12px 12px 0;margin:26px 0;color:var(--muto);font-size:13.5px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th,td{border:1px solid var(--bordo);padding:10px 12px;text-align:left}
+th{background:var(--panel2);color:var(--muto);font-weight:600}
+footer{border-top:1px solid var(--bordo);padding:28px 0;color:var(--muto);font-size:13px}
+footer a{color:var(--teal);text-decoration:none;margin-right:16px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="index.html">BTCQuant</a>
+  <div class="lingue">
+    <button data-lingua="it" onclick="setLingua('it')">IT</button>
+    <button data-lingua="en" onclick="setLingua('en')">EN</button>
+  </div>
+</div></nav>
+
+<header><div class="wrap">
+  <h1 data-t="titolo"></h1>
+  <div class="agg" data-t="agg"></div>
+</div></header>
+
+<main><div class="wrap">
+  <div class="nota" data-t="avviso_bozza"></div>
+  <div id="corpo"></div>
+</div></main>
+
+<footer><div class="wrap">
+  © <span id="anno"></span> BTCQuant —
+  <a href="index.html" data-t="ft_home"></a>
+  <a href="termini.html" data-t="ft_termini"></a>
+</div></footer>
+
+<script>
+const S = (t) => `<span class="seg">${t}</span>`;
+
+const T = {
+it:{
+ titolo:"Privacy Policy",
+ agg:"Ultimo aggiornamento: " + S("[DATA DI PUBBLICAZIONE]"),
+ ft_home:"Home", ft_termini:"Termini di Servizio",
+ avviso_bozza:"BOZZA DA COMPLETARE — I campi evidenziati vanno compilati con i dati definitivi (titolare, sede, P.IVA, email) e il documento va sottoposto a revisione legale prima della pubblicazione. I riferimenti normativi sono al GDPR (Reg. UE 2016/679).",
+ corpo:`
+ <h2>1. Titolare del trattamento</h2>
+ <p>Il titolare del trattamento dei dati personali raccolti tramite il sito btcquant.io è ${S("[NOME E COGNOME / RAGIONE SOCIALE]")}, con sede in ${S("[INDIRIZZO COMPLETO]")}, ${S("[P.IVA / CODICE FISCALE]")}.</p>
+ <p>Per qualsiasi richiesta relativa ai dati personali è possibile scrivere a: ${S("[EMAIL DI CONTATTO]")}.</p>
+
+ <h2>2. Quali dati raccogliamo</h2>
+ <table>
+   <tr><th>Categoria</th><th>Dati</th><th>Quando</th></tr>
+   <tr><td>Dati di account</td><td>Indirizzo email</td><td>Registrazione e accesso alla console (autenticazione con codice OTP)</td></tr>
+   <tr><td>Dati di pagamento</td><td>Email, importo, identificativo della transazione</td><td>Acquisto. <strong>I dati della carta non transitano mai dai nostri sistemi</strong>: sono trattati direttamente dal fornitore di pagamento</td></tr>
+   <tr><td>Dati tecnici</td><td>Indirizzo IP, log di accesso, tipo di browser</td><td>Navigazione, per sicurezza e funzionamento del servizio</td></tr>
+   <tr><td>Consensi</td><td>Data e ora di accettazione delle avvertenze</td><td>Primo accesso alla console</td></tr>
+ </table>
+ <p>Non raccogliamo dati particolari (categorie sensibili) né effettuiamo profilazione automatizzata.</p>
+
+ <h2>3. Perché trattiamo i dati e su quale base giuridica</h2>
+ <ul>
+   <li><strong>Erogare il servizio acquistato</strong> (accesso alla console, autenticazione, assistenza) — base giuridica: esecuzione del contratto, art. 6.1.b GDPR.</li>
+   <li><strong>Gestire il pagamento ed emettere i documenti fiscali</strong> — base giuridica: obbligo legale, art. 6.1.c GDPR.</li>
+   <li><strong>Garantire la sicurezza</strong> del servizio e prevenire abusi o condivisioni non autorizzate degli accessi — base giuridica: legittimo interesse, art. 6.1.f GDPR.</li>
+   <li><strong>Inviare comunicazioni</strong> relative al prodotto acquistato (aggiornamenti, avvisi tecnici) — base giuridica: esecuzione del contratto. Eventuali comunicazioni promozionali solo previo consenso, art. 6.1.a GDPR, revocabile in ogni momento.</li>
+ </ul>
+
+ <h2>4. A chi comunichiamo i dati (responsabili del trattamento)</h2>
+ <p>I dati sono trattati da fornitori selezionati che agiscono come responsabili del trattamento:</p>
+ <ul>
+   <li><strong>Supabase</strong> — banca dati e autenticazione degli utenti</li>
+   <li><strong>Stripe</strong> — gestione dei pagamenti con carta</li>
+   <li>${S("[CRYPTO.COM PAY]")} — gestione dei pagamenti in cripto-attività (se attivato)</li>
+   <li><strong>Brevo</strong> — invio delle email transazionali (codici di accesso, conferme)</li>
+   <li><strong>GitHub Pages</strong> e <strong>Cloudflare</strong> — hosting e distribuzione del sito</li>
+ </ul>
+ <p>Alcuni fornitori possono trattare dati al di fuori dello Spazio Economico Europeo. In tal caso il trasferimento avviene sulla base di garanzie adeguate (clausole contrattuali standard approvate dalla Commissione Europea o decisioni di adeguatezza). I dati non sono ceduti né venduti a terzi per finalità di marketing.</p>
+
+ <h2>5. Per quanto tempo conserviamo i dati</h2>
+ <ul>
+   <li><strong>Dati di account:</strong> per tutta la durata dell'accesso al servizio, trattandosi di licenza a vita, e fino a richiesta di cancellazione.</li>
+   <li><strong>Documenti contabili e fiscali:</strong> ${S("[10 ANNI — da confermare col commercialista]")}, come previsto dalla normativa.</li>
+   <li><strong>Log tecnici:</strong> ${S("[12 MESI]")}.</li>
+   <li><strong>Registrazioni dei consensi:</strong> per tutta la durata del rapporto e per il periodo di prescrizione.</li>
+ </ul>
+
+ <h2>6. I tuoi diritti</h2>
+ <p>In qualità di interessato hai diritto di: accedere ai tuoi dati, chiederne la rettifica o la cancellazione, ottenere la limitazione del trattamento, opporti al trattamento fondato sul legittimo interesse, richiedere la portabilità dei dati e revocare in ogni momento i consensi prestati.</p>
+ <p>Per esercitare questi diritti scrivi a ${S("[EMAIL DI CONTATTO]")}. Risponderemo entro un mese dalla richiesta. Hai inoltre diritto di proporre reclamo all'Autorità Garante per la protezione dei dati personali (www.garanteprivacy.it).</p>
+ <p>La cancellazione dell'account comporta la perdita dell'accesso alla console; i documenti fiscali restano conservati per obbligo di legge.</p>
+
+ <h2>7. Cookie e tecnologie simili</h2>
+ <p>Il sito utilizza esclusivamente cookie e archiviazione locale <strong>tecnici</strong>, necessari al funzionamento: mantenimento della sessione di accesso e memoria della lingua scelta. Non sono impiegati cookie di profilazione o di marketing, e per questo non è richiesto un banner di consenso.</p>
+ <p>${S("[SE IN FUTURO VERRANNO ATTIVATI STRUMENTI DI ANALYTICS O PIXEL PUBBLICITARI, QUESTA SEZIONE ANDRÀ AGGIORNATA E SARÀ NECESSARIO UN BANNER COOKIE CON CONSENSO PREVENTIVO]")}</p>
+
+ <h2>8. Sicurezza</h2>
+ <p>Adottiamo misure tecniche e organizzative adeguate a proteggere i dati: connessioni cifrate (HTTPS), accesso tramite codice temporaneo inviato via email anziché password, controlli di accesso alla banca dati e conservazione separata delle credenziali di servizio.</p>
+
+ <h2>9. Modifiche</h2>
+ <p>Questa informativa può essere aggiornata. Le modifiche sostanziali saranno comunicate via email agli utenti registrati e segnalate su questa pagina con la nuova data di aggiornamento.</p>`
+},
+en:{
+ titolo:"Privacy Policy",
+ agg:"Last updated: " + S("[PUBLICATION DATE]"),
+ ft_home:"Home", ft_termini:"Terms of Service",
+ avviso_bozza:"DRAFT — The highlighted fields must be completed with final details (controller, address, VAT number, email) and the document must be reviewed by a lawyer before publication. References are to the GDPR (EU Reg. 2016/679).",
+ corpo:`
+ <h2>1. Data controller</h2>
+ <p>The controller of personal data collected through btcquant.io is ${S("[FULL NAME / COMPANY NAME]")}, based at ${S("[FULL ADDRESS]")}, ${S("[VAT / TAX ID]")}.</p>
+ <p>For any request concerning personal data, write to: ${S("[CONTACT EMAIL]")}.</p>
+
+ <h2>2. What data we collect</h2>
+ <table>
+   <tr><th>Category</th><th>Data</th><th>When</th></tr>
+   <tr><td>Account data</td><td>Email address</td><td>Sign-up and console access (one-time code authentication)</td></tr>
+   <tr><td>Payment data</td><td>Email, amount, transaction ID</td><td>Purchase. <strong>Card details never pass through our systems</strong>: they are handled directly by the payment provider</td></tr>
+   <tr><td>Technical data</td><td>IP address, access logs, browser type</td><td>Browsing, for security and service operation</td></tr>
+   <tr><td>Consents</td><td>Date and time the disclaimers were accepted</td><td>First console access</td></tr>
+ </table>
+ <p>We do not collect special categories of data and we do not carry out automated profiling.</p>
+
+ <h2>3. Why we process data and on what legal basis</h2>
+ <ul>
+   <li><strong>To deliver the purchased service</strong> (console access, authentication, support) — legal basis: performance of a contract, Art. 6.1.b GDPR.</li>
+   <li><strong>To handle payment and issue tax documents</strong> — legal basis: legal obligation, Art. 6.1.c GDPR.</li>
+   <li><strong>To ensure security</strong> and prevent abuse or unauthorised sharing of access — legal basis: legitimate interest, Art. 6.1.f GDPR.</li>
+   <li><strong>To send communications</strong> about the purchased product (updates, technical notices) — legal basis: performance of a contract. Promotional messages only with consent, Art. 6.1.a GDPR, withdrawable at any time.</li>
+ </ul>
+
+ <h2>4. Who we share data with (processors)</h2>
+ <p>Data is processed by selected providers acting as data processors:</p>
+ <ul>
+   <li><strong>Supabase</strong> — user database and authentication</li>
+   <li><strong>Stripe</strong> — card payment processing</li>
+   <li>${S("[CRYPTO.COM PAY]")} — crypto-asset payment processing (if enabled)</li>
+   <li><strong>Brevo</strong> — transactional email delivery (access codes, confirmations)</li>
+   <li><strong>GitHub Pages</strong> and <strong>Cloudflare</strong> — website hosting and delivery</li>
+ </ul>
+ <p>Some providers may process data outside the European Economic Area. In that case transfers rely on appropriate safeguards (EU Standard Contractual Clauses or adequacy decisions). Data is never sold or shared with third parties for marketing purposes.</p>
+
+ <h2>5. How long we keep data</h2>
+ <ul>
+   <li><strong>Account data:</strong> for the whole duration of access, as the licence is lifetime, and until a deletion request.</li>
+   <li><strong>Accounting and tax records:</strong> ${S("[10 YEARS — to confirm with the accountant]")}, as required by law.</li>
+   <li><strong>Technical logs:</strong> ${S("[12 MONTHS]")}.</li>
+   <li><strong>Consent records:</strong> for the duration of the relationship and the statutory limitation period.</li>
+ </ul>
+
+ <h2>6. Your rights</h2>
+ <p>You have the right to access your data, request rectification or erasure, obtain restriction of processing, object to processing based on legitimate interest, request data portability, and withdraw consent at any time.</p>
+ <p>To exercise these rights write to ${S("[CONTACT EMAIL]")}. We will reply within one month. You also have the right to lodge a complaint with the Italian Data Protection Authority (www.garanteprivacy.it) or your local supervisory authority.</p>
+ <p>Deleting your account means losing access to the console; tax records are retained as required by law.</p>
+
+ <h2>7. Cookies and similar technologies</h2>
+ <p>The site only uses <strong>technical</strong> cookies and local storage, strictly necessary for operation: keeping the login session and remembering the selected language. No profiling or marketing cookies are used, so no consent banner is required.</p>
+ <p>${S("[IF ANALYTICS OR ADVERTISING PIXELS ARE ADDED IN FUTURE, THIS SECTION MUST BE UPDATED AND A COOKIE CONSENT BANNER WILL BE REQUIRED]")}</p>
+
+ <h2>8. Security</h2>
+ <p>We apply appropriate technical and organisational measures: encrypted connections (HTTPS), login via a temporary code sent by email instead of passwords, database access controls, and separate storage of service credentials.</p>
+
+ <h2>9. Changes</h2>
+ <p>This policy may be updated. Material changes will be notified by email to registered users and shown on this page with a new update date.</p>`
+}};
+
+function setLingua(l){
+  localStorage.setItem("lingua", l);
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-t]").forEach(el=>{ const v=T[l][el.dataset.t]; if(v!==undefined) el.innerHTML=v; });
+  document.getElementById("corpo").innerHTML = T[l].corpo;
+  document.querySelectorAll(".lingue button").forEach(b=>b.classList.toggle("attiva", b.dataset.lingua===l));
+}
+document.getElementById("anno").textContent = new Date().getFullYear();
+setLingua(localStorage.getItem("lingua") || ((navigator.language||"it").toLowerCase().startsWith("it") ? "it" : "en"));
+</script>
+</body>
+</html>
