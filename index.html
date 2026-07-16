@@ -97,6 +97,14 @@ footer{border-top:1px solid var(--bordo);padding:34px 0;color:var(--muto);font-s
 footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
 footer a{color:var(--teal);text-decoration:none;margin-right:18px}
 @media(max-width:640px){.fascia{flex-wrap:wrap}.fascia .soglia{margin-left:30px}}
+
+#cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:999;background:var(--panel2);
+  border-top:1px solid var(--bordo);padding:16px 24px;display:flex;flex-wrap:wrap;gap:16px;
+  align-items:center;justify-content:center;box-shadow:0 -4px 20px rgba(0,0,0,.25)}
+#cookie-banner p{margin:0;color:var(--muto);font-size:13.5px;max-width:640px}
+#cookie-banner a{color:var(--teal);text-decoration:underline}
+#cookie-banner button{background:var(--teal);color:#0A1420;border:none;font-weight:700;
+  font-size:13.5px;padding:9px 20px;border-radius:8px;cursor:pointer;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -149,8 +157,8 @@ footer a{color:var(--teal);text-decoration:none;margin-right:18px}
   <div class="fasce">
     <div class="fascia"><span class="pallino" style="background:#E5484D"></span><span class="nome" data-t="f1_n"></span><span class="desc" data-t="f1_d"></span><span class="soglia">Z &gt; +6,5</span></div>
     <div class="fascia"><span class="pallino" style="background:#F76B15"></span><span class="nome" data-t="f2_n"></span><span class="desc" data-t="f2_d"></span><span class="soglia">+3,5 — +6,5</span></div>
-    <div class="fascia"><span class="pallino" style="background:#EAB308"></span><span class="nome" data-t="f3_n"></span><span class="desc" data-t="f3_d"></span><span class="soglia">+0,3 — +3,5</span></div>
-    <div class="fascia"><span class="pallino" style="background:#84CC16"></span><span class="nome" data-t="f4_n"></span><span class="desc" data-t="f4_d"></span><span class="soglia">−1,0 — +0,3</span></div>
+    <div class="fascia"><span class="pallino" style="background:#EAB308"></span><span class="nome" data-t="f3_n"></span><span class="desc" data-t="f3_d"></span><span class="soglia">+0,0 — +3,5</span></div>
+    <div class="fascia"><span class="pallino" style="background:#84CC16"></span><span class="nome" data-t="f4_n"></span><span class="desc" data-t="f4_d"></span><span class="soglia">−1,0 — +0,0</span></div>
     <div class="fascia"><span class="pallino" style="background:#10B981"></span><span class="nome" data-t="f5_n"></span><span class="desc" data-t="f5_d"></span><span class="soglia">Z &lt; −1,0</span></div>
   </div>
 </div></section>
@@ -205,11 +213,16 @@ footer a{color:var(--teal);text-decoration:none;margin-right:18px}
 <footer><div class="wrap">
   <div>© <span id="anno"></span> <span class="brand-txt"></span> — <span data-t="ft_diritti"></span></div>
   <div>
-    <!-- Prima del lancio: creare privacy.html e termini.html -->
     <a href="privacy.html" data-t="ft_privacy"></a>
     <a href="termini.html" data-t="ft_termini"></a>
   </div>
 </div></footer>
+
+<div id="cookie-banner" style="display:none">
+  <p data-t="cookie_msg"></p>
+  <a href="privacy.html#cookie" data-t="cookie_link"></a>
+  <button onclick="chiudiCookieBanner()" data-t="cookie_ok"></button>
+</div>
 
 <script>
 // ============ CONFIGURAZIONE ============
@@ -236,7 +249,7 @@ it:{
  f1_n:"Euforia", f1_d:"Zona storica dei massimi di ciclo",
  f2_n:"Rischio elevato", f2_d:"Fase avanzata del rialzo",
  f3_n:"Neutro", f3_d:"Transizione, nessun estremo",
- f4_n:"Osservazione", f4_d:"Qui sono avvenuti tutti i minimi storici",
+ f4_n:"Opportunità", f4_d:"Qui sono avvenuti tutti i minimi storici",
  f5_n:"Accumulo profondo", f5_d:"Zona estrema sotto il costo base della rete",
  bt_eti:"Backtest 2011–2026", bt_titolo:"Quindici anni di storia, frame per frame",
  bt_intro:"Abbiamo ricostruito il comportamento del sistema su quattro cicli completi, giorno per giorno, con dati CoinMetrics. Questo è il risultato — compresa la scoperta più importante: gli estremi si comprimono a ogni ciclo.",
@@ -257,6 +270,8 @@ it:{
  pr_email:"Importante: per accedere userai la stessa email con cui effettui il pagamento.",
  disc:"Questo strumento ha finalità esclusivamente didattiche e informative. Non costituisce consulenza finanziaria, raccomandazione personalizzata di investimento né sollecitazione all'acquisto o alla vendita di cripto-attività. Le performance passate non sono garanzia di risultati futuri. Investire in cripto-attività comporta rischi elevati, inclusa la perdita totale del capitale.",
  ft_diritti:"Tutti i diritti riservati", ft_privacy:"Privacy Policy", ft_termini:"Termini di Servizio",
+ cookie_msg:"Questo sito usa solo cookie tecnici necessari al funzionamento (sessione di accesso e lingua scelta). Nessun cookie di profilazione o marketing.",
+ cookie_link:"Maggiori informazioni", cookie_ok:"Ho capito",
 },
 en:{
  hero_titolo:"The console that reads <em>Bitcoin's cycle</em>, not the noise.",
@@ -274,7 +289,7 @@ en:{
  f1_n:"Euphoria", f1_d:"Historical zone of cycle tops",
  f2_n:"High risk", f2_d:"Late stage of the uptrend",
  f3_n:"Neutral", f3_d:"Transition, no extremes",
- f4_n:"Observation", f4_d:"Every historical bottom happened here",
+ f4_n:"Opportunity", f4_d:"Every historical bottom happened here",
  f5_n:"Deep accumulation", f5_d:"Extreme zone below the network's cost basis",
  bt_eti:"Backtest 2011–2026", bt_titolo:"Fifteen years of history, frame by frame",
  bt_intro:"We reconstructed the system's behavior across four full cycles, day by day, using CoinMetrics data. This is the result — including the most important finding: extremes compress with every cycle.",
@@ -295,6 +310,8 @@ en:{
  pr_email:"Important: you'll sign in with the same email you use for the payment.",
  disc:"This tool is for educational and informational purposes only. It does not constitute financial advice, a personalized investment recommendation, or a solicitation to buy or sell crypto-assets. Past performance is no guarantee of future results. Investing in crypto-assets involves high risk, including total loss of capital.",
  ft_diritti:"All rights reserved", ft_privacy:"Privacy Policy", ft_termini:"Terms of Service",
+ cookie_msg:"This site only uses technical cookies necessary for operation (login session and selected language). No profiling or marketing cookies.",
+ cookie_link:"Learn more", cookie_ok:"Got it",
 }};
 
 function setLingua(l){
@@ -330,6 +347,14 @@ function tick(){
 tick(); setInterval(tick, 1000);
 const salvata = localStorage.getItem("lingua");
 setLingua(salvata || ((navigator.language||"it").toLowerCase().startsWith("it") ? "it" : "en"));
+
+function chiudiCookieBanner(){
+  localStorage.setItem("cookie_ack", "1");
+  document.getElementById("cookie-banner").style.display = "none";
+}
+if(!localStorage.getItem("cookie_ack")){
+  document.getElementById("cookie-banner").style.display = "flex";
+}
 </script>
 </body>
 </html>
