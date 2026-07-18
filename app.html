@@ -57,22 +57,33 @@ function Gauge({ mvrvZ }) {
     { top: 50, bottom: 75, label: "Opportunità", sub: "-1 – 0", color: COLORS.amber },
     { top: 75, bottom: 100, label: "Accumulo profondo", sub: "< -1", color: COLORS.teal },
   ];
+  // Arco semicircolare: 0% = Accumulo (estremo sinistro), 100% = Euforia (estremo destro).
+  // "top"/"bottom" restano quelli calcolati sopra (convenzione Euforia-in-alto); qui li
+  // convertiamo in angoli 180°→360° (sinistra→sopra→destra) con lo stesso raggio per tutte le fasce.
+  const cx = 130, cy = 120, r = 98, sw = 20;
+  const angleFor = (posPct) => 180 + (posPct / 100) * 180;
+  const polar = (angleDeg) => {
+    const rad = (angleDeg * Math.PI) / 180;
+    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+  };
+  const markerPt = polar(angleFor(100 - pctFromTop));
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px", color: COLORS.ink, fontFamily: "'Space Grotesk', sans-serif", fontSize: "14px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.02em" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", color: COLORS.ink, fontFamily: "'Space Grotesk', sans-serif", fontSize: "14px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.02em" }}>
         ⚓ Profondità di ciclo
       </div>
-      <div style={{ position: "relative", width: "46px", height: "380px" }}>
-        {bands.map((b, i) => (
-          <div key={i} style={{ position: "absolute", left: 0, right: 0, top: `${b.top}%`, height: `${b.bottom - b.top}%`, backgroundColor: b.color, opacity: 0.85, borderTop: i === 0 ? "none" : `1px solid ${COLORS.bgDeep}` }} />
-        ))}
-        <div style={{ position: "absolute", left: "50%", top: `${pctFromTop}%`, transform: "translate(-50%, -50%)" }}>
-          <div style={{ width: "27px", height: "27px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: COLORS.btcOrange, border: `4px solid ${COLORS.bgDeep}`, transform: "rotate(45deg)", boxShadow: "0 0 14px 3px rgba(247,147,26,0.6)" }}>
-            <span style={{ display: "inline-block", transform: "rotate(-45deg)", color: COLORS.btcOrangeDark, fontFamily: "'Space Grotesk', sans-serif", fontSize: "13px", fontWeight: 700, lineHeight: 1 }}>₿</span>
-          </div>
-        </div>
-      </div>
-      <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "6px", width: "220px" }}>
+      <svg viewBox="0 0 260 145" style={{ width: "100%", maxWidth: "260px", display: "block" }}>
+        {bands.map((b, i) => {
+          const s = polar(angleFor(100 - b.bottom));
+          const e = polar(angleFor(100 - b.top));
+          return <path key={i} d={`M ${s.x} ${s.y} A ${r} ${r} 0 0 1 ${e.x} ${e.y}`} fill="none" stroke={b.color} strokeWidth={sw} opacity={0.9} strokeLinecap="butt" />;
+        })}
+        <g transform={`translate(${markerPt.x},${markerPt.y})`}>
+          <rect x={-12} y={-12} width={24} height={24} fill={COLORS.btcOrange} stroke={COLORS.bgDeep} strokeWidth={3.5} transform="rotate(45)" />
+          <text x={0} y={1} textAnchor="middle" dominantBaseline="central" fontSize={12} fontWeight="700" fill={COLORS.btcOrangeDark} fontFamily="'Space Grotesk', sans-serif">₿</text>
+        </g>
+      </svg>
+      <div style={{ marginTop: "8px", display: "flex", flexDirection: "column", gap: "6px", width: "100%", maxWidth: "260px" }}>
         {bands.map((b, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -276,7 +287,7 @@ function AccumulationConsole() {
   }, [mvrvZ, puell, reserveRisk, zvwap, soprLth, sthLthGap, soprSustained, btcPrice, minerCost, hashRibbonCapitulation, hashRibbonCrossover]);
 
   const minerSignalCopy = {
-    strong: { label: "Segnale forte — capitolazione mineraria conclusa, prezzo sotto costo", color: COLORS.tealBright },
+    strong: { label: "Lettura forte — capitolazione mineraria conclusa, prezzo sotto costo", color: COLORS.tealBright },
     watch: { label: "Capitolazione mineraria in corso — attendi il crossover Hash Ribbon", color: COLORS.amber },
     none: { label: "Nessuno stress strutturale sui miner al momento", color: COLORS.mutedDim },
   };
@@ -427,7 +438,7 @@ function AccumulationConsole() {
           <div style={{ padding: "16px 16px 4px" }}>
             <span style={{ fontFamily: "'Space Grotesk', sans-serif", color: COLORS.ink, fontSize: "14px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.03em" }}>Semafori di confluenza</span>
             <p style={{ color: COLORS.mutedDim, fontSize: "11px", marginTop: "4px", lineHeight: 1.5 }}>
-              Tutti verdi + simbolo ₿ nella zona di accumulo del gauge = massima confluenza storica dei segnali. Lettura informativa, non indicazione operativa.
+              Tutti verdi + simbolo ₿ nella zona di accumulo del gauge = massima confluenza storica delle metriche. Lettura informativa, non indicazione operativa.
             </p>
           </div>
           <div style={{ padding: "4px 16px 12px" }}>
@@ -436,7 +447,7 @@ function AccumulationConsole() {
           {calc.allGreen && calc.activeStage >= 1 && (
             <div style={{ padding: "12px 16px", backgroundColor: "rgba(79,182,168,0.12)", borderTop: `1px solid ${COLORS.teal}` }}>
               <span style={{ fontFamily: "'Space Grotesk', sans-serif", color: COLORS.tealBright, fontSize: "13px", fontWeight: 600 }}>
-                🟢 Tutti i semafori sono verdi — confluenza completa dei segnali on-chain. Le decisioni di investimento restano di esclusiva competenza dell'utente.
+                🟢 Tutti i semafori sono verdi — confluenza completa delle metriche on-chain. Le decisioni di investimento restano di esclusiva competenza dell'utente.
               </span>
             </div>
           )}
@@ -484,7 +495,7 @@ function AccumulationConsole() {
 
       <div style={{ padding: "0 24px", maxWidth: "1000px", margin: "16px auto 0" }}>
         <p style={{ color: COLORS.mutedDim, fontSize: "12px", lineHeight: 1.6 }}>
-          ⓘ Console di supporto alla decisione, non un segnale automatico di trading. Le soglie derivano da pattern osservati nei cicli 2011–2022 e restano un'ipotesi di lavoro, non una garanzia sui cicli futuri. Tutti i valori sono calcolati in automatico ad ogni aggiornamento: MVRV Z-Score, Puell, Reserve Risk, SOPR e gap STH/LTH-MVRV sono letture on-chain dirette; costo di produzione e zVWAP (badge STIMA) sono modelli — hashrate/prezzo/volume live più poche assunzioni di settore scritte nel codice. Nessun campo è mai stato compilato a mano.
+          ⓘ Console di supporto alla decisione, non uno strumento di trading automatico. Le soglie derivano da pattern osservati nei cicli 2011–2022 e restano un'ipotesi di lavoro, non una garanzia sui cicli futuri. Tutti i valori sono calcolati in automatico ad ogni aggiornamento: MVRV Z-Score, Puell, Reserve Risk, SOPR e gap STH/LTH-MVRV sono letture on-chain dirette; costo di produzione e zVWAP (badge STIMA) sono modelli — hashrate/prezzo/volume live più poche assunzioni di settore scritte nel codice. Nessun campo è mai stato compilato a mano.
         </p>
       </div>
     </div>
