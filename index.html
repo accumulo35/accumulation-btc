@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>BTCQuant — La console che legge il ciclo di Bitcoin</title>
-<meta name="description" content="BTCQuant: la console che legge il ciclo di Bitcoin. 8 metriche on-chain, una lettura di ciclo aggiornata ogni giorno, backtest completo 2011–2026. | The Bitcoin cycle analysis console."/>
+<meta name="description" content="BTCQuant: la console che legge il ciclo di Bitcoin. 8 metriche on-chain, lettura di ciclo aggiornata ogni giorno, backtest 2011–2026."/>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
 <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
 <link rel="canonical" href="https://btcquant.io/"/>
@@ -336,7 +336,13 @@ function setLingua(l){
     it: "8 metriche on-chain, una lettura di ciclo aggiornata ogni giorno, backtest completo 2011–2026.",
     en: "8 on-chain metrics, one daily reading, a 15-year backtest. Know which phase of the Bitcoin cycle you're in.",
   };
+  const SEO_DESC = {
+    it: "BTCQuant: la console che legge il ciclo di Bitcoin. 8 metriche on-chain, lettura di ciclo aggiornata ogni giorno, backtest 2011–2026.",
+    en: "BTCQuant: the console that reads Bitcoin's cycle. 8 on-chain metrics, one daily reading, a 15-year backtest from 2011 to 2026.",
+  };
   document.title = TITOLI[l];
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute("content", SEO_DESC[l]);
   const ogTitle = document.querySelector('meta[property="og:title"]');
   if (ogTitle) ogTitle.setAttribute("content", TITOLI[l]);
   const ogDesc = document.querySelector('meta[property="og:description"]');
