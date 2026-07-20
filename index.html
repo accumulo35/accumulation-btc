@@ -160,8 +160,7 @@ footer a{color:var(--teal);text-decoration:none;margin-right:18px}
     <div class="fascia"><span class="pallino" style="background:#E5484D"></span><span class="nome" data-t="f1_n"></span><span class="desc" data-t="f1_d"></span><span class="soglia">Z &gt; +6,5</span></div>
     <div class="fascia"><span class="pallino" style="background:#F76B15"></span><span class="nome" data-t="f2_n"></span><span class="desc" data-t="f2_d"></span><span class="soglia">+3,5 — +6,5</span></div>
     <div class="fascia"><span class="pallino" style="background:#EAB308"></span><span class="nome" data-t="f3_n"></span><span class="desc" data-t="f3_d"></span><span class="soglia">+0,0 — +3,5</span></div>
-    <div class="fascia"><span class="pallino" style="background:#84CC16"></span><span class="nome" data-t="f4_n"></span><span class="desc" data-t="f4_d"></span><span class="soglia">−1,0 — +0,0</span></div>
-    <div class="fascia"><span class="pallino" style="background:#10B981"></span><span class="nome" data-t="f5_n"></span><span class="desc" data-t="f5_d"></span><span class="soglia">Z &lt; −1,0</span></div>
+    <div class="fascia"><span class="pallino" style="background:linear-gradient(135deg,#84CC16,#5B8A0F)"></span><span class="nome" data-t="f4_n"></span><span class="desc" data-t="f4_d"></span><span class="soglia">Z &lt; +0,0</span></div>
   </div>
 </div></section>
 
@@ -252,13 +251,12 @@ it:{
  c1_t:"Metriche on-chain", c1_p:"MVRV Z-Score, SOPR, Puell Multiple, Reserve Risk, Hash Ribbons e altre, aggiornate 3 volte al giorno da fonti indipendenti.",
  c2_t:"Regola anti-falsi-positivi", c2_p:"Una lettura estrema scatta solo con la conferma di almeno 3 delle 4 metriche pesanti: niente allarmi su oscillazioni isolate.",
  c3_t:"Lettura giornaliera", c3_p:"Nessun grafico da interpretare: la console restituisce una lettura sintetica della fase di ciclo, ogni giorno.",
- fasce_eti:"La mappa", fasce_titolo:"Le cinque fasce del ciclo",
- fasce_intro:"Ogni giorno il quadrante colloca il mercato in una delle cinque fasce, costruite sull'MVRV Z-Score e validate su quindici anni di storia.",
+ fasce_eti:"La mappa", fasce_titolo:"Le quattro fasce del ciclo",
+ fasce_intro:"Ogni giorno il quadrante colloca il mercato in una delle quattro fasce, costruite sull'MVRV Z-Score e validate su quindici anni di storia.",
  f1_n:"Euforia", f1_d:"Zona storica dei massimi di ciclo",
  f2_n:"Rischio elevato", f2_d:"Fase avanzata del rialzo",
  f3_n:"Neutro", f3_d:"Transizione, nessun estremo",
- f4_n:"Opportunità", f4_d:"Qui sono avvenuti tutti i minimi storici",
- f5_n:"Accumulo profondo", f5_d:"Zona estrema sotto il costo base della rete",
+ f4_n:"Opportunità", f4_d:"Qui sono avvenuti tutti i minimi storici — più intensa quanto più ci si allontana dallo zero",
  bt_eti:"Backtest 2011–2026", bt_titolo:"Quindici anni di storia, frame per frame",
  bt_intro:"2011, 2013–15, 2017–18, 2021–22: li abbiamo osservati e studiati da vicino, anno dopo anno, prima di scrivere una sola riga di questa console. Poi abbiamo ricostruito il comportamento del sistema su quei quattro cicli completi, giorno per giorno, con dati CoinMetrics. Questo è il risultato — compresa la scoperta più importante: gli estremi si comprimono a ogni ciclo.",
  s1:"cicli completi analizzati", s2:"frame documentati", s3:"falsi positivi di Euforia in 15 anni", s4:"anni di dati giornalieri",
@@ -291,13 +289,12 @@ en:{
  c1_t:"On-chain metrics", c1_p:"MVRV Z-Score, SOPR, Puell Multiple, Reserve Risk, Hash Ribbons and more, updated 3 times a day from independent sources.",
  c2_t:"Anti-false-positive rule", c2_p:"An extreme reading only fires when at least 3 of the 4 heavy metrics agree: no alarms on isolated swings.",
  c3_t:"Daily reading", c3_p:"No charts to interpret: the console returns a synthetic reading of the cycle phase, every day.",
- fasce_eti:"The map", fasce_titolo:"The five cycle bands",
- fasce_intro:"Every day the dial places the market in one of five bands, built on the MVRV Z-Score and validated over fifteen years of history.",
+ fasce_eti:"The map", fasce_titolo:"The four cycle bands",
+ fasce_intro:"Every day the dial places the market in one of four bands, built on the MVRV Z-Score and validated over fifteen years of history.",
  f1_n:"Euphoria", f1_d:"Historical zone of cycle tops",
  f2_n:"High risk", f2_d:"Late stage of the uptrend",
  f3_n:"Neutral", f3_d:"Transition, no extremes",
- f4_n:"Opportunity", f4_d:"Every historical bottom happened here",
- f5_n:"Deep accumulation", f5_d:"Extreme zone below the network's cost basis",
+ f4_n:"Opportunity", f4_d:"Every historical bottom happened here — more intense the further from zero",
  bt_eti:"Backtest 2011–2026", bt_titolo:"Fifteen years of history, frame by frame",
  bt_intro:"2011, 2013–15, 2017–18, 2021–22: we watched and studied them closely, year after year, before writing a single line of this console. Then we reconstructed the system's behavior across those four full cycles, day by day, using CoinMetrics data. This is the result — including the most important finding: extremes compress with every cycle.",
  s1:"full cycles analyzed", s2:"documented frames", s3:"false Euphoria positives in 15 years", s4:"years of daily data",
