@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BTCQuant — Bitcoin cycle analysis console</title>
+<title>BTCQuant — La console che legge il ciclo di Bitcoin</title>
 <meta name="description" content="BTCQuant: la console che legge il ciclo di Bitcoin. 8 metriche on-chain, una lettura di ciclo aggiornata ogni giorno, backtest completo 2011–2026. | The Bitcoin cycle analysis console."/>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
 <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
 <link rel="canonical" href="https://btcquant.io/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://btcquant.io/"/>
-<meta property="og:title" content="BTCQuant — The Bitcoin cycle analysis console"/>
-<meta property="og:description" content="8 on-chain metrics, one daily reading, a 15-year backtest. Know which phase of the Bitcoin cycle you're in."/>
+<meta property="og:locale" content="it_IT"/>
+<meta property="og:locale:alternate" content="en_US"/>
+<meta property="og:title" content="BTCQuant — La console che legge il ciclo di Bitcoin"/>
+<meta property="og:description" content="8 metriche on-chain, una lettura di ciclo aggiornata ogni giorno, backtest completo 2011–2026."/>
 <meta property="og:image" content="https://btcquant.io/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://btcquant.io/og-image.png"/>
@@ -121,8 +123,8 @@ footer a{color:var(--teal);text-decoration:none;margin-right:18px}
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <h1 data-t="hero_titolo"></h1>
-  <p data-t="hero_sotto"></p>
+  <h1 data-t="hero_titolo">La console che legge <em>il ciclo di Bitcoin</em>, non il rumore.</h1>
+  <p data-t="hero_sotto">8 metriche on-chain, una regola anti-falsi-positivi, una lettura di ciclo aggiornata ogni giorno. Sapere in quale fase del ciclo ti trovi, ogni giorno, senza interpretazioni.</p>
   <a class="cta" data-t="cta" href="#prezzo"></a>
   <div class="sotto-cta" data-t="hero_nota"></div>
   <div id="countdown" style="display:none;margin:34px auto 0;max-width:520px;padding:18px 26px;
@@ -177,8 +179,8 @@ footer a{color:var(--teal);text-decoration:none;margin-right:18px}
   <h3 style="margin-bottom:6px" data-t="bt_gal_t"></h3>
   <p class="intro-sez" data-t="bt_gal_p"></p>
   <div class="galleria">
-    <figure><img data-img="c4-top" src="backtest/c4-top-it.png" alt="" loading="lazy"/><figcaption data-t="g7"></figcaption></figure>
-    <figure><img data-img="c4-bottom" src="backtest/c4-bottom-it.png" alt="" loading="lazy"/><figcaption data-t="g8"></figcaption></figure>
+    <figure><img data-img="c4-top" src="backtest/c4-top-it.png" alt="Gauge BTCQuant al massimo del ciclo 4 di Bitcoin, dicembre 2024" loading="lazy"/><figcaption data-t="g7"></figcaption></figure>
+    <figure><img data-img="c4-bottom" src="backtest/c4-bottom-it.png" alt="Gauge BTCQuant al minimo del ciclo 4 di Bitcoin, novembre 2022" loading="lazy"/><figcaption data-t="g8"></figcaption></figure>
   </div>
   <p style="color:var(--muto);font-size:13.5px;margin-top:22px" data-t="bt_nota"></p>
 </div></section>
@@ -329,6 +331,21 @@ function setLingua(l){
   });
   document.querySelectorAll(".lingue button").forEach(b=>
     b.classList.toggle("attiva", b.dataset.lingua === l));
+  const TITOLI = {
+    it: "BTCQuant — La console che legge il ciclo di Bitcoin",
+    en: "BTCQuant — The Bitcoin cycle analysis console",
+  };
+  const OG_DESC = {
+    it: "8 metriche on-chain, una lettura di ciclo aggiornata ogni giorno, backtest completo 2011–2026.",
+    en: "8 on-chain metrics, one daily reading, a 15-year backtest. Know which phase of the Bitcoin cycle you're in.",
+  };
+  document.title = TITOLI[l];
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute("content", TITOLI[l]);
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute("content", OG_DESC[l]);
+  const ogLocale = document.querySelector('meta[property="og:locale"]');
+  if (ogLocale) ogLocale.setAttribute("content", l === "it" ? "it_IT" : "en_US");
 }
 document.getElementById("brand-slot").textContent = BRAND;
 document.querySelectorAll(".brand-txt").forEach(e=>e.textContent = BRAND);
