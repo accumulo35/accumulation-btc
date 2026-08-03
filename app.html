@@ -54,38 +54,26 @@ function Gauge({ mvrvZ }) {
     { top: 0, bottom: 11.846, label: "Euforia · top ciclo", sub: "Z > 6.5", color: COLORS.coral },
     { top: 11.846, bottom: 22, label: "Rischio elevato", sub: "3.5 – 6.5", color: "#8A5A3A" },
     { top: 22, bottom: 50, label: "Neutro / espansione", sub: "0 – 3.5", color: COLORS.slate },
-    { top: 50, bottom: 75, label: "Opportunità", sub: "< 0", color: COLORS.amber },
-    { top: 75, bottom: 100, label: "Opportunità", sub: "< 0", color: "#B8752A" },
+    { top: 50, bottom: 75, label: "Opportunità", sub: "-1 – 0", color: COLORS.amber },
+    { top: 75, bottom: 100, label: "Accumulo profondo", sub: "< -1", color: COLORS.teal },
   ];
-  const legendBands = bands.filter((_, i) => i !== 4);
-  // Arco semicircolare: 0% = Accumulo (estremo sinistro), 100% = Euforia (estremo destro).
-  // "top"/"bottom" restano quelli calcolati sopra (convenzione Euforia-in-alto); qui li
-  // convertiamo in angoli 180°→360° (sinistra→sopra→destra) con lo stesso raggio per tutte le fasce.
-  const cx = 130, cy = 120, r = 98, sw = 20;
-  const angleFor = (posPct) => 180 + (posPct / 100) * 180;
-  const polar = (angleDeg) => {
-    const rad = (angleDeg * Math.PI) / 180;
-    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-  };
-  const markerPt = polar(angleFor(100 - pctFromTop));
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "10px", color: COLORS.ink, fontFamily: "'Space Grotesk', sans-serif", fontSize: "14px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.02em" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px", color: COLORS.ink, fontFamily: "'Space Grotesk', sans-serif", fontSize: "14px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.02em" }}>
         ⚓ Profondità di ciclo
       </div>
-      <svg viewBox="0 0 260 145" style={{ width: "100%", maxWidth: "260px", display: "block" }}>
-        {bands.map((b, i) => {
-          const s = polar(angleFor(100 - b.bottom));
-          const e = polar(angleFor(100 - b.top));
-          return <path key={i} d={`M ${s.x} ${s.y} A ${r} ${r} 0 0 1 ${e.x} ${e.y}`} fill="none" stroke={b.color} strokeWidth={sw} opacity={0.9} strokeLinecap="butt" />;
-        })}
-        <g transform={`translate(${markerPt.x},${markerPt.y})`}>
-          <rect x={-12} y={-12} width={24} height={24} fill={COLORS.btcOrange} stroke={COLORS.bgDeep} strokeWidth={3.5} transform="rotate(45)" />
-          <text x={0} y={1} textAnchor="middle" dominantBaseline="central" fontSize={12} fontWeight="700" fill={COLORS.btcOrangeDark} fontFamily="'Space Grotesk', sans-serif">₿</text>
-        </g>
-      </svg>
-      <div style={{ marginTop: "8px", display: "flex", flexDirection: "column", gap: "6px", width: "100%", maxWidth: "260px" }}>
-        {legendBands.map((b, i) => (
+      <div style={{ position: "relative", width: "46px", height: "380px" }}>
+        {bands.map((b, i) => (
+          <div key={i} style={{ position: "absolute", left: 0, right: 0, top: `${b.top}%`, height: `${b.bottom - b.top}%`, backgroundColor: b.color, opacity: 0.85, borderTop: i === 0 ? "none" : `1px solid ${COLORS.bgDeep}` }} />
+        ))}
+        <div style={{ position: "absolute", left: "50%", top: `${pctFromTop}%`, transform: "translate(-50%, -50%)" }}>
+          <div style={{ width: "27px", height: "27px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: COLORS.btcOrange, border: `4px solid ${COLORS.bgDeep}`, transform: "rotate(45deg)", boxShadow: "0 0 14px 3px rgba(247,147,26,0.6)" }}>
+            <span style={{ display: "inline-block", transform: "rotate(-45deg)", color: COLORS.btcOrangeDark, fontFamily: "'Space Grotesk', sans-serif", fontSize: "13px", fontWeight: 700, lineHeight: 1 }}>₿</span>
+          </div>
+        </div>
+      </div>
+      <div style={{ marginTop: "16px", display: "flex", flexDirection: "column", gap: "6px", width: "220px" }}>
+        {bands.map((b, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "12px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <div style={{ width: "8px", height: "8px", backgroundColor: b.color, borderRadius: "2px" }} />
