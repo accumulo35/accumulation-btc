@@ -1,16 +1,16 @@
 {
-  "aggiornato": "2026-09-12T23:59:05+00:00",
-  "price": 77270.0,
-  "mvrvZ": 0.8941,
-  "puell": 1.001,
-  "sopr": 1.0069,
-  "reserveRisk": 0.0005970208,
-  "sthMvrv": 1.08,
-  "lthMvrv": 1.58,
-  "sthLthGap": 0.5,
+  "aggiornato": "2026-09-13T11:46:54+00:00",
+  "price": 76749.0,
+  "mvrvZ": 0.8969,
+  "puell": 1.1183,
+  "sopr": 1.005,
+  "reserveRisk": 0.0005973737,
+  "sthMvrv": 1.13,
+  "lthMvrv": 1.65,
+  "sthLthGap": 0.52,
   "soprSustained": false,
-  "zvwap": -0.4214,
+  "zvwap": -0.4154,
   "hashRibbonCapitulation": false,
   "hashRibbonCrossover": true,
-  "minerCost": 47874
+  "minerCost": 46684
 }
